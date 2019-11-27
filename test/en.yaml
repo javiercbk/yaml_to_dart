@@ -1,0 +1,35 @@
+title: Thyroid it
+tnm:
+  questions:
+    Age: Patient's age
+    TumorSize: Tumor size
+    ExtraThyroidExtension: Extra thyroid extension
+    DangerousInvation: Does the tumor invades prevertebral fascia, carotid artery or mediastinal vessels?
+    GanglionMetastasis: Is there metastasis on ganglions?
+    GanglionMetastasisDetail: unilateral, contralateral, bilateral cervical or superior mediastinal
+    Metastasis: Does the patient has metastasis?
+recurrenceRisk:
+  questions:
+    answers:
+      ATA: ATA
+      SAEM: SAEM
+  statificationSystem: "Choose the recurrence risk statification system"
+ata:
+  questions:
+    AggressiveHistology: Has aggresive histology?
+    OuterNeckOutake: Has an outer neck uptake?
+    VascularInvation: Has vascular invation?
+    VascularInvationType:
+      minimal: "Minimal (less than 4 foci)"
+      extensive: "Extensive (more than 4 foci)"
+    IncompleteResection: Has aggresive histology
+    HighTG: Has aggresive histology
+    GanglionMetastasisType: Has aggresive histology
+questions:
+  answers:
+    yes: "Yes"
+    no: "No"
+    next: Next
+units:
+  cm: cm
+  mm: mm
