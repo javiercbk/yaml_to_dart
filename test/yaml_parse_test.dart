@@ -28,7 +28,38 @@ void main() {
       final yamlMap = loadYaml(yamlContent);
       generateClass(dartCode, '', 'messages', yamlMap, first: true);
       final dartCodeContent = dartCode.toString();
-      expect(dartCodeContent, contains("class Messages {"));
+      expect(dartCodeContent, contains("final String title = 'title';"));
+      expect(dartCodeContent, contains("final String title = 'tnm.title';"));
+      expect(
+          dartCodeContent, contains("final String age = 'tnm.questions.Age';"));
+      expect(dartCodeContent,
+          contains("final String tumorSize = 'tnm.questions.TumorSize';"));
+      expect(
+          dartCodeContent,
+          contains(
+              "final String extraThyroidExtension = 'tnm.questions.ExtraThyroidExtension';"));
+      expect(
+          dartCodeContent,
+          contains(
+              "final String dangerousInvation = 'tnm.questions.DangerousInvation';"));
+      expect(
+          dartCodeContent,
+          contains(
+              "final String ganglionMetastasis = 'tnm.questions.GanglionMetastasis';"));
+      expect(
+          dartCodeContent,
+          contains(
+              "final String ganglionMetastasisDetail = 'tnm.questions.GanglionMetastasisDetail';"));
+      expect(dartCodeContent,
+          contains("final String metastasis = 'tnm.questions.Metastasis';"));
+      expect(
+          dartCodeContent,
+          contains(
+              "final String ata = 'recurrenceRisk.questions.answers.ATA';"));
+      expect(
+          dartCodeContent,
+          contains(
+              "final String saem = 'recurrenceRisk.questions.answers.SAEM';"));
     });
   });
 }

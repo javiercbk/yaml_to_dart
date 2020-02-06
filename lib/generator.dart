@@ -31,7 +31,7 @@ bool allUpperCase(String str) {
 
 List<String> _generateClassCode(
     StringBuffer dartBuffer, String prefixPath, String name, YamlMap fields,
-    [String parentPath = '']) {
+    {String parentPath = '', bool first = false}) {
   List<String> subClasses = List<String>();
   final className = _camelCase(name);
   final uniqueClassPrefix = parentPath + className[0];
@@ -44,7 +44,10 @@ List<String> _generateClassCode(
       dartBuffer.write(
           'final _$uniqueClassPrefix$subClassName $fieldName = _$uniqueClassPrefix$subClassName();');
     } else {
-      final fieldPath = prefixPath == '' ? key : '$prefixPath.$name.$key';
+      String fieldPath = key;
+      if (!first) {
+        fieldPath = prefixPath == '' ? '$name.$key' : '$prefixPath.$name.$key';
+      }
       dartBuffer.write("final String $fieldName = '$fieldPath';");
     }
   });
@@ -55,10 +58,17 @@ List<String> _generateClassCode(
 void generateClass(
     StringBuffer dartBuffer, String prefixPath, String name, YamlMap fields,
     {bool first = false, String parentPath = ''}) {
-  final subclasses =
-      _generateClassCode(dartBuffer, prefixPath, name, fields, parentPath);
+  final subclasses = _generateClassCode(dartBuffer, prefixPath, name, fields,
+      parentPath: parentPath, first: first);
   subclasses.forEach((subClass) {
-    final fullPrefix = first ? '' : '$prefixPath$name';
+    String fullPrefix = '';
+    if (!first) {
+      if (prefixPath == '') {
+        fullPrefix = name;
+      } else {
+        fullPrefix = '$prefixPath.$name';
+      }
+    }
     generateClass(dartBuffer, fullPrefix, subClass, fields[subClass],
         parentPath: parentPath + name[0].toUpperCase());
   });

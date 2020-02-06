@@ -1,5 +1,6 @@
 title: Thyroid it
 tnm:
+  title: "title"
   questions:
     Age: Patient's age
     TumorSize: Tumor size
